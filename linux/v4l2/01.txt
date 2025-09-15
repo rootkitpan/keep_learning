@@ -1,0 +1,34 @@
+﻿
+
+
+https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
+
+
+
+
+ffmpeg -f v4l2 -input_format yuyv422 -i /dev/video0 -pix_fmt rgb24 output.mp4
+
+
+
+
+drivers/media/v4l2-core/		V4L2 核心框架代码，包括设备注册、ioctl 处理、控制项管理等。
+drivers/media/common/			公共模块，如 videobuf2 缓冲区管理框架。
+drivers/media/platform/			平台相关驱动（如 SoC 摄像头控制器）。
+drivers/media/usb/				USB 摄像头驱动（如 UVC 驱动）。
+drivers/media/pci/				PCI/PCIe 视频采集卡驱动。
+include/media/					内核头文件，定义 V4L2 相关结构体和接口。
+include/uapi/linux/videodev2.h	用户空间 API 定义，包含 ioctl 命令和数据结构。
+
+
+
+V4L2 的主要接口功能包括：
+Video Capture Interface（视频采集）
+这是最常用的接口，用于从摄像头等设备采集图像数据，适用于视觉识别、图像处理等任务。
+
+Video Output Interface（视频输出）
+可以将图像数据从用户空间传输到驱动程序，再输出到显示设备，比如将处理后的图像显示在屏幕上
+
+Video Overlay Interface（视频叠加）
+允许将视频数据直接传输到显示设备，绕过 CPU，提高显示效率。
+
+
