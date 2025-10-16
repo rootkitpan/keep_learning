@@ -109,7 +109,7 @@ int get_valid_action(int state, int action[])
 	
 	if( col == 0 ){
 		action[ACTION_LEFT] = 0;
-	} else if( row == COLMAX ){
+	} else if( col == COLMAX ){
 		action[ACTION_RIGHT] = 0;
 	}
 	
