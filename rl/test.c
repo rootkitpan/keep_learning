@@ -236,6 +236,7 @@ void train()
 		while (state != LAST_STATE) {
 			int action = choose_action(state);
 			int next = get_next_state(state, action);
+			printf("%d  %d\n", state, action);
 			double max_q = Q[next][0];
 			for (int i = 1; i < ACTIONS; i++) {
 				if (Q[next][i] > max_q) max_q = Q[next][i];
@@ -243,6 +244,8 @@ void train()
 			Q[state][action] += ALPHA * (R[state][action] + GAMMA * max_q - Q[state][action]);
 			state = next;
 		}
+		
+		getchar();
 	}
 }
 
