@@ -125,15 +125,28 @@ int choose_action(int state)
 {
 	int action;
 	int valid_action[ACTIONS];
+	int valid_action_num;
 	
-	get_valid_action(state, valid_action);
+	valid_action_num = get_valid_action(state, valid_action);
 	
 	if ((double)rand() / RAND_MAX < EPSILON) {
-		action = rand() % ACTIONS;
+		int choose = rand() % valid_action_num;
+		int counter = 0;
+		int i;
+		
+		for(i = 0; i < ACTIONS; i++){
+			counter += valid_action[i];
+			if( (choose + 1) == counter ){
+				action = i;
+				break;
+			}
+		}
+		
 	} else {
 		double max_q;
 		int is_init = 0;
-		for (int a = 0; a < ACTIONS; a++) {
+		int a;
+		for (a = 0; a < ACTIONS; a++) {
 			if( valid_action[a] == 1 ){
 				if(is_init == 0){
 					max_q = Q[state][a];
